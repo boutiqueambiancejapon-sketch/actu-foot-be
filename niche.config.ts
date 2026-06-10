@@ -1,19 +1,6 @@
 /**
  * niche.config.ts — Configuration centrale du site.
  * C'est le SEUL fichier à remplir pour chaque nouveau site issu du template.
- *
- * Workflow :
- * - Soit rempli par Claude Code via le skill `init-site` (qui pose les questions
- *   par blocs, en commençant par le Bloc 0 — langues + marché géo).
- * - Soit rempli à la main quand il n'y a pas de livrable Claude Design.
- *
- * Tous les composants, configs et pages dépendent de ce fichier. Ne pas hardcoder
- * de couleur, de font, de nom de site, de tagline dans le JSX — passer par ici.
- *
- * IMPORTANT — Bloc 0 d'init-site :
- *   Les champs `market`, `locales`, `defaultLocale`, `localePrefix` sont définis
- *   AVANT tous les autres et pilotent l'architecture i18n du site (routing,
- *   middleware, hreflang, sitemap, OG locale, schema.org). Cf. skills/init-site/SKILL.md.
  */
 
 export type NicheConfig = {
@@ -23,10 +10,10 @@ export type NicheConfig = {
   tagline: string
 
   // Vocabulaire de la niche
-  entity: string          // "produit", "destination", "carte"
-  entities: string        // pluriel
-  entityVerb: string      // "acheter", "explorer", "souscrire"
-  dealWord: string        // "deals", "bons plans", "offres"
+  entity: string
+  entities: string
+  entityVerb: string
+  dealWord: string
 
   // Hero
   heroPrefix: string
@@ -36,7 +23,7 @@ export type NicheConfig = {
   ctaPrimary: { text: string; url: string }
   ctaSecondary: { text: string; url: string }
 
-  // Catégories (1 couleur accent par catégorie)
+  // Catégories
   categories: {
     slug: string
     label: string
@@ -105,7 +92,7 @@ export type NicheConfig = {
   affiliateTag: string
   defaultStore: string
 
-  // Signature DA anti-IA — personnalité visuelle unique
+  // Signature DA
   signature: {
     anchor: string
     oneRule: string
@@ -114,7 +101,7 @@ export type NicheConfig = {
     components: string[]
   }
 
-  // ─── i18n & marché (Bloc 0 d'init-site) ────────────────────────────────
+  // i18n & marché
   market: 'BE' | 'FR' | 'CA' | 'CH' | string
   defaultLocale: string
   locales: string[]
@@ -127,20 +114,25 @@ export type NicheConfig = {
 }
 
 // ─── Configuration du site — Actu Foot Belgique ─────────────────────────
+//
+// DA (étape 8) : skin V2 Éditorial muté (rouge brique + verticale sport custom).
+// - archétype : magazine d'analyse + actu foot.
+// - skin source : V2 Éditorial (cf. docs/design-reference/volteo/DESIGN-NOTES.md §5).
+// - mutations : teinte marque #9E2B25 → #B23230 (~+12° vers rouge brique vif),
+//   fonts Newsreader+Hanken → Fraunces+Inter (mêmes registres serif+grotesk
+//   neutre, plus contemporains), rayons 3px (gardé), verticale custom sport
+//   (rouge Pro League, rouge Diables, bleu CL, vert pelouse, ambré mercato).
 
 export const niche: NicheConfig = {
-  // Identité
   siteName: 'Actu Foot Belgique',
   domain: 'actu-foot.be',
   tagline: 'Le foot belge et européen, sans langue de bois',
 
-  // Vocabulaire — magazine d'actu, pas comparateur produit
   entity: 'article',
   entities: 'articles',
   entityVerb: 'lire',
   dealWord: 'à la une',
 
-  // Hero
   heroPrefix: 'Le foot belge',
   heroSuffix: 'décortiqué match après match',
   rotatingWords: ['Pro League', 'Diables Rouges', 'mercato', 'Champions League', 'analyses'],
@@ -148,69 +140,76 @@ export const niche: NicheConfig = {
   ctaPrimary: { text: 'Dernières news →', url: '/articles' },
   ctaSecondary: { text: 'Pro League', url: '/pro-league' },
 
-  // Catégories — 5 silos éditoriaux
+  // Catégories — verticale sport custom (cf. signature.components ci-dessous)
   categories: [
     {
       slug: 'pro-league',
       label: 'Pro League',
-      accent: 'var(--accent-1)',
+      accent: 'var(--accent-1)',  // #B23230 rouge brique éditorial (= marque)
       description: 'Championnat belge — résultats, classement, analyses match par match',
     },
     {
       slug: 'diables-rouges',
       label: 'Diables Rouges',
-      accent: 'var(--accent-2)',
+      accent: 'var(--accent-2)',  // #E63946 rouge Belgique vif
       description: 'Sélection nationale belge — qualifications, Euro, Mondial, Nations League',
     },
     {
       slug: 'champions-league',
       label: 'Champions League',
-      accent: 'var(--accent-3)',
+      accent: 'var(--accent-3)',  // #1F3B6F bleu profond UEFA CL
       description: 'Le parcours européen des clubs belges et le top des clubs européens',
     },
     {
       slug: 'grands-championnats',
       label: 'Grands championnats',
-      accent: 'var(--accent-4)',
+      accent: 'var(--accent-4)',  // #2A8B5F vert pelouse
       description: 'Premier League, Ligue 1, Liga, Bundesliga — vu depuis la Belgique',
     },
     {
       slug: 'mercato',
       label: 'Mercato',
-      accent: 'var(--accent-5)',
+      accent: 'var(--accent-5)',  // #D89A2B ambré or (valeur/transfert)
       description: 'Transferts, rumeurs vérifiées et analyses du marché belge et international',
     },
   ],
 
-  // Outils — désactivés pour un magazine d'actu pur
+  // Outils — désactivés (magazine pur)
   quiz: { enabled: false, question: '', criteria: [] },
   comparator: { enabled: false, criteria: [] },
   simulator: { enabled: false, title: '', description: '' },
 
-  // Style & DA — défini à l'Étape 8 (AUTO-DESIGN)
+  // Style — V2 Éditorial muté (clair, hero centered magazine, angles nets)
   style: {
-    mode: 'dark',
-    hero: 'split',
-    effects: 'aurora',
+    mode: 'light',
+    hero: 'centered',
+    effects: 'subtle',
     cards: 'bordered',
-    uiStyle: '',
+    uiStyle: 'editorial-press',
   },
-  palette: {
-    accent1: '#FF3D57',
-    accent2: '#FFD23F',
-    accent3: '#3DFFC0',
-    accent4: '#7B61FF',
-    accent5: '#3D9BFF',
-    bgPrimary: '#0A0A0F',
-    bgSurface: '#13131A',
-    bgSurface2: '#1C1C26',
-    textPrimary: '#F0F0F5',
-    textSecondary: '#9090A8',
-    textMuted: '#55556A',
-  },
-  fonts: { display: 'Unbounded', body: 'Space Grotesk' },
 
-  // Auteur — Maxime (cf. docs/AUTHOR-maxime.md)
+  // Palette — V2 Éditorial muté (papier chaud + 5 accents sport)
+  palette: {
+    accent1: '#B23230',  // rouge brique éditorial muté (marque + Pro League)
+    accent2: '#E63946',  // rouge Belgique vif (Diables Rouges)
+    accent3: '#1F3B6F',  // bleu profond UEFA (Champions League)
+    accent4: '#2A8B5F',  // vert pelouse (Grands championnats)
+    accent5: '#D89A2B',  // ambré or (Mercato)
+    bgPrimary: '#FBF7F0',  // crème V2
+    bgSurface: '#FFFFFF',
+    bgSurface2: '#F1E8D9',  // cream-2 V2
+    textPrimary: '#1B1813',
+    textSecondary: '#4A443A',
+    textMuted: '#8A8173',
+  },
+
+  // Fonts — V2 Éditorial muté (Fraunces serif + Inter sans-serif neutre)
+  fonts: {
+    display: 'Fraunces',
+    body: 'Inter',
+  },
+
+  // Auteur — Maxime
   author: {
     name: 'Maxime',
     slug: 'maxime',
@@ -234,13 +233,33 @@ export const niche: NicheConfig = {
   affiliateTag: '',
   defaultStore: '',
 
-  // Signature DA — composée à l'Étape 8 (AUTO-DESIGN)
+  // Signature DA — anti-footprint, presse foot éditoriale
   signature: {
-    anchor: '',
-    oneRule: '',
-    inspiration: [],
-    forbidden: [],
-    components: [],
+    anchor: 'Presse foot éditoriale belge — papier chaud, angles nets, photo dominante, typo serif vivante (Fraunces).',
+    oneRule: 'Une photo dominante, un titre tranché, jamais de mots inutiles autour. La marge respire et la typo guide la lecture.',
+    inspiration: [
+      'The Athletic (US/UK) — long-form data-driven, sources nommées',
+      'So Foot (FR) — angle tranché, refus du consensus, ironie maîtrisée',
+      'Cinq (mag papier FR, ex-So Foot Hors-Série) — direction artistique magazine',
+      'Tifo Football — pédagogie tactique illustrée',
+    ],
+    forbidden: [
+      'dégradés multi-couleurs néon ou pastel',
+      'icônes flat colorées de type clipart générique',
+      'carrousels auto-scroll horizontaux full-bleed',
+      'effets aurora-glow flottants (anti-pattern V4)',
+      "photos de stock anonymes de stades vides ou ballons sur fond neutre",
+      "fonds blancs purs sans grain (sauf zones de tableau)",
+    ],
+    components: [
+      'EditorialHero — photo dominante + over-titre catégorie en majuscules + titre serif Fraunces grand',
+      "ByLine — \"Par Maxime · 10 juin 2026 · 6 min de lecture\" sous titre, typo Inter petite",
+      'TickerScores — bandeau discret en haut de home, scores live Pro League + grands championnats (à connecter API foot phase 2)',
+      'PullQuote — citation serif Fraunces italique large, filet vertical accent-1',
+      'DataTable — tableaux stats avec typo éditoriale, alternance subtile cream/cream-2, en-tête accent-3 bleu profond',
+      'CategoryChip — étiquette catégorie en haut d\'article, couleur accent dédiée (Pro League rouge, Diables rouge vif, CL bleu, etc.)',
+      'BodyArticle — colonne 680px max, line-height 1.75, lettrine première lettre en Fraunces bold colorée accent-1',
+    ],
   },
 
   // Bloc 0 — VERROUILLÉ
@@ -256,21 +275,18 @@ export const niche: NicheConfig = {
 
 // ─── Helpers ────────────────────────────────────────────────────────────
 
-/** Accent CSS variable for a given category index. */
 const ACCENT_VARS = ['var(--accent-1)', 'var(--accent-2)', 'var(--accent-3)', 'var(--accent-4)', 'var(--accent-5)']
 
 export function categoryAccent(index: number): string {
   return ACCENT_VARS[index % ACCENT_VARS.length]
 }
 
-/** Map category slug → label */
 export function categoryLabels(): Record<string, string> {
   const map: Record<string, string> = {}
   for (const cat of niche.categories) map[cat.slug] = cat.label
   return map
 }
 
-/** Map category slug → CSS accent variable */
 export function categoryAccents(): Record<string, string> {
   const map: Record<string, string> = {}
   niche.categories.forEach((cat, i) => {
@@ -279,17 +295,10 @@ export function categoryAccents(): Record<string, string> {
   return map
 }
 
-/** True si le site est multi-langue (≥ 2 locales actives). */
 export function isMultilingual(): boolean {
   return niche.locales.length >= 2
 }
 
-/**
- * Helper pour construire un chemin localisé respectant `localePrefix: 'as-needed'`.
- * - Si lang === defaultLocale → renvoie path tel quel (pas de préfixe)
- * - Sinon → préfixe `/[lang]`
- * Exemple : localePath('fr', '/blog') → '/blog' ; localePath('en', '/blog') → '/en/blog'
- */
 export function localePath(lang: string, path: string): string {
   if (lang === niche.defaultLocale) return path
   return `/${lang}${path === '/' ? '' : path}`
