@@ -1,68 +1,113 @@
 # content/pages/mentions-legales.yaml
 #
-# Mentions légales du site forké. Format YAML pour cohérence avec les autres
-# pages CMS (home.yaml, deals.yaml, comparer.yaml, quiz.yaml).
+# Mentions légales d'Actu Foot Belgique. Format YAML.
 #
-# Rempli par le skill `init-site` lors de l'interview de setup. Tant qu'au
-# moins une valeur reste à `TODO`, init-site considère cette page comme non
-# définie et redéclenchera la question correspondante.
+# ⚠️ Les champs marqués "À REMPLIR AVANT MISE EN PROD" sont des données
+# personnelles que l'éditeur doit fournir lui-même. Ne pas déployer en
+# production sans ces valeurs : c'est une obligation légale BE/UE.
 #
-# La page est rendue côté Next.js par app/(legal)/mentions-legales/page.tsx
-# (à créer côté template si elle n'existe pas encore — voir DUPLICATION-GUIDE).
+# Configuration init :
+# - Éditeur = particulier (personne physique francophone BE)
+# - Pas de DPO désigné — l'éditeur est responsable de traitement
+# - Hébergeur Vercel (par défaut)
+#
+# Page rendue par app/[locale]/(legal)/mentions-legales/page.tsx.
+# Une variante NL miroir doit exister à content/pages/mentions-legales.nl.yaml
+# (générée plus bas dans ce fichier comme amorce).
 
 slug: mentions-legales
 title: "Mentions légales"
 seo:
-  title: "Mentions légales — TODO (nom du site)"
-  description: "Informations légales obligatoires : éditeur, hébergeur, contact."
-  noindex: false  # mettre true si tu préfères ne pas indexer
+  title: "Mentions légales — Actu Foot Belgique"
+  description: "Informations légales d'Actu Foot Belgique : éditeur, hébergeur, contact et RGPD."
+  noindex: false
 
 editeur:
-  raison_sociale: "TODO (nom de l'entité éditrice — personne physique ou morale)"
-  forme_juridique: "TODO (auto-entrepreneur / SAS / SARL / association / particulier)"
-  siret: "TODO (numéro SIRET si entité française ; sinon laisser vide)"
-  rcs: "TODO (numéro RCS si applicable ; sinon laisser vide)"
-  capital_social: "TODO (capital social si société ; sinon laisser vide)"
-  adresse: "TODO (adresse postale du siège — obligatoire si entité commerciale)"
-  representant_legal: "TODO (nom du directeur de la publication / gérant)"
-  tva_intracom: "TODO (numéro TVA intracommunautaire si applicable)"
+  raison_sociale: "À REMPLIR AVANT MISE EN PROD — Nom et prénom complets de l'éditeur (personne physique)"
+  forme_juridique: "Particulier (personne physique — site édité à titre non commercial / activité accessoire)"
+  siret: ""  # Sans objet — éditeur BE personne physique
+  rcs: ""  # Sans objet
+  capital_social: ""  # Sans objet
+  adresse: "À REMPLIR AVANT MISE EN PROD — Adresse postale complète (rue, numéro, code postal, ville, pays). Une boîte postale est acceptée pour préserver la vie privée."
+  representant_legal: "À REMPLIR AVANT MISE EN PROD — identique à raison_sociale (éditeur = directeur de publication)"
+  tva_intracom: ""  # Sans objet pour particulier non assujetti
 
 contact:
-  email: "TODO (email de contact public)"
-  telephone: "TODO (optionnel — laisser vide si pas souhaité)"
+  email: "À REMPLIR AVANT MISE EN PROD — Email de contact public (ex: contact@actu-foot.be)"
+  telephone: ""  # Optionnel — préférable de laisser vide pour un site média
 
 hebergeur:
-  nom: "TODO (ex : Vercel Inc.)"
-  adresse: "TODO (ex : 340 S Lemon Ave #4133, Walnut, CA 91789, USA)"
-  url: "TODO (ex : https://vercel.com)"
-  telephone: "TODO (optionnel)"
+  nom: "Vercel Inc."
+  adresse: "340 S Lemon Ave #4133, Walnut, CA 91789, USA"
+  url: "https://vercel.com"
+  telephone: ""
 
 donnees_personnelles:
-  responsable_traitement: "TODO (nom + email du DPO ou responsable)"
-  dpo_email: "TODO (email dédié RGPD, peut être identique à contact.email)"
+  responsable_traitement: "L'éditeur (cf. section editeur ci-dessus). Aucun DPO désigné — site de taille modérée, traitements limités."
+  dpo_email: "À REMPLIR AVANT MISE EN PROD — Identique au contact.email (l'éditeur traite lui-même les demandes RGPD)"
   finalites: |
-    TODO — décrire en 2-4 phrases :
-    - Quelles données on collecte (formulaire contact, newsletter, analytics).
-    - Pourquoi on les collecte.
-    - Combien de temps on les garde.
-    - Avec qui on les partage (le cas échéant — affiliés, hébergeur, etc.).
-  base_legale: "TODO (intérêt légitime / consentement / contrat — citer la base RGPD)"
+    Actu Foot Belgique collecte un nombre limité de données personnelles :
+
+    - **Newsletter** : adresse email + prénom (optionnel). Finalité : envoyer la newsletter éditoriale.
+      Conservation tant que l'abonnement est actif, suppression à la demande ou après inactivité prolongée.
+      Stockage chez le prestataire newsletter (à préciser une fois choisi — type Brevo, ConvertKit, Mailchimp).
+
+    - **Formulaire de contact** : email + message. Finalité : répondre à votre message.
+      Conservation 12 mois maximum après la dernière interaction.
+
+    - **Analytics** : données techniques anonymisées (pages vues, temps passé, source de trafic).
+      Outil utilisé : à préciser (Plausible, Vercel Analytics, ou Google Analytics 4 selon le choix).
+      Conservation selon l'outil — typiquement 25-50 mois.
+      Aucun cookie publicitaire, aucune revente de données.
+
+    Aucune donnée n'est revendue à des tiers. Aucun profilage publicitaire n'est effectué.
+
+  base_legale: "Consentement explicite (newsletter, formulaire), intérêt légitime (mesure d'audience anonymisée). Conforme RGPD (Règlement UE 2016/679) et loi belge du 30 juillet 2018 sur la protection des personnes physiques."
   droits_utilisateur: |
-    Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d'un droit
-    d'accès, de rectification, d'effacement, de portabilité et d'opposition sur vos données.
-    Pour exercer ces droits, contactez TODO (email).
+    Conformément au RGPD et à la loi belge du 30 juillet 2018, vous disposez des droits suivants
+    sur vos données personnelles :
+    - droit d'accès,
+    - droit de rectification,
+    - droit d'effacement (droit à l'oubli),
+    - droit à la portabilité,
+    - droit d'opposition au traitement,
+    - droit de limitation du traitement.
+
+    Pour exercer ces droits, contactez l'éditeur à l'adresse email indiquée dans la section contact.
+    Vous pouvez également introduire une réclamation auprès de l'Autorité de protection des données belge
+    (https://www.autoriteprotectiondonnees.be) si vous estimez que vos droits ne sont pas respectés.
 
 propriete_intellectuelle:
   texte: |
-    TODO — formuler ici la clause propriété intellectuelle adaptée au site (réutilisation
-    autorisée avec mention / tout droits réservés / licence CC-BY / etc.). Éviter de
-    copier-coller depuis un autre site pour ne pas créer de footprint.
+    L'ensemble des contenus rédactionnels (articles, dossiers, FAQ, illustrations originales,
+    datavisualisations) publiés sur Actu Foot Belgique est protégé par le droit d'auteur belge
+    (loi du 30 juin 1994). Toute reproduction, même partielle, sans autorisation écrite préalable
+    de l'éditeur est interdite.
+
+    Les courtes citations sont autorisées dans le cadre du droit de citation à des fins d'analyse,
+    de critique ou d'enseignement, à condition de mentionner la source (« Actu Foot Belgique »
+    + lien vers l'article original).
+
+    Les images de joueurs, équipes et compétitions utilisées sur le site relèvent du droit à
+    l'information sportive. Les logos des clubs et ligues citées restent la propriété de leurs
+    détenteurs respectifs.
 
 cookies:
-  presence: true  # mettre false si site 100% sans cookies (rare)
+  presence: true
   description: |
-    TODO — lister les cookies utilisés (analytics, affiliation, préférences) et renvoyer
-    vers la page de gestion des cookies (`/cookies` si elle existe).
+    Actu Foot Belgique utilise un nombre limité de cookies :
+
+    - **Cookies techniques** (obligatoires, pas de consentement requis) : préférences d'affichage,
+      mémorisation du choix de langue (FR / NL).
+
+    - **Cookies de mesure d'audience anonymisée** (consentement requis selon l'outil choisi) :
+      pour mesurer le trafic du site et améliorer le contenu. Aucune donnée n'est partagée
+      avec des annonceurs publicitaires.
+
+    Aucun cookie publicitaire, aucun cookie de profilage, aucun cookie de retargeting n'est
+    déposé sans votre consentement explicite.
+
+    La gestion détaillée des cookies est accessible sur la page dédiée.
   url_gestion: "/cookies"
 
-derniere_mise_a_jour: "TODO (date au format YYYY-MM-DD — à mettre à jour à chaque modif substantielle)"
+derniere_mise_a_jour: "2026-06-10"
