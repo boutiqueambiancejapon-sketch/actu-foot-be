@@ -218,14 +218,14 @@ export const niche: NicheConfig = {
   affiliateTag: '',
   defaultStore: 'Amazon',
 
-  // Bloc 0 d'init-site — placeholders à remplacer impérativement
-  market: 'BE',                  // À choisir : 'BE' | 'FR' | 'CA' | 'CH' | string
+  // Bloc 0 d'init-site — VERROUILLÉ
+  market: 'BE',
   defaultLocale: 'fr',
-  locales: ['fr'],               // 1 langue par défaut. Étendre via init-site.
-  // localePrefix omis tant que 1 seule locale. Imposé à 'as-needed' dès N >= 2.
+  locales: ['fr', 'nl'],
+  localePrefix: 'as-needed',
 
   vercelRegion: 'fra1',
-  repo: '',
+  repo: 'boutiqueambiancejapon-sketch/actu-foot-be',
   branch: 'main',
 }
 
