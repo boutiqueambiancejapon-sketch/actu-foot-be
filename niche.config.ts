@@ -210,8 +210,21 @@ export const niche: NicheConfig = {
   },
   fonts: { display: 'Unbounded', body: 'Space Grotesk' },
 
-  // Auteur — défini à l'Étape 7
-  author: { name: '', slug: '', title: '', bio: '', tone: [], noGo: [], formulations: [] },
+  // Auteur — Maxime (cf. docs/AUTHOR-maxime.md)
+  author: {
+    name: 'Maxime',
+    slug: 'maxime',
+    title: 'Rédacteur en chef et analyste',
+    bio: "Maxime suit la Pro League depuis plus de quinze ans et écrit sur le foot belge avec une approche tactique et économique factuelle. Rédacteur en chef d'Actu Foot Belgique.",
+    tone: ['tranchant', 'factuel', 'curieux'],
+    noGo: ['supporter écrivant', 'chroniqueur premier degré', 'tipster'],
+    formulations: [
+      'Le constat est simple :',
+      'On y revient.',
+      'À regarder de près :',
+      'Trois chiffres, trois lectures.',
+    ],
+  },
 
   // Identité visuelle
   logo: 'Actu Foot·BE',
