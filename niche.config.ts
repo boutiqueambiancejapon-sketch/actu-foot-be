@@ -115,36 +115,9 @@ export type NicheConfig = {
   }
 
   // ─── i18n & marché (Bloc 0 d'init-site) ────────────────────────────────
-  /**
-   * Marché géographique principal. Détermine OG locale (`fr_BE` vs `fr_FR`...),
-   * devise par défaut (EUR/CHF/CAD...), schema.org `addressCountry`, références
-   * institutionnelles citées par seo-geo-redaction (FSMA/BNB pour BE, ACPR/AMF
-   * pour FR, FINMA pour CH, AMF Québec pour CA).
-   */
   market: 'BE' | 'FR' | 'CA' | 'CH' | string
-
-  /**
-   * Locale par défaut du site (généralement la première de `locales`).
-   * Avec `localePrefix: 'as-needed'`, cette locale n'a PAS de préfixe URL
-   * (URLs canoniques courtes pour le marché principal → SEO optimal).
-   */
   defaultLocale: string
-
-  /**
-   * Liste des langues supportées. Ordre = priorité éditoriale.
-   * Si `length === 1` → routing `app/page.tsx` direct, pas de middleware i18n.
-   * Si `length >= 2` → routing `app/[locale]/...`, middleware `next-intl`,
-   *   miroir strict obligatoire (cf. skills/seo-geo-redaction/references/mirror-i18n.md).
-   */
   locales: string[]
-
-  /**
-   * Comportement du préfixe locale dans l'URL.
-   * - `'as-needed'` (recommandé) : default sans préfixe, autres sous segment.
-   *   Ex: `/blog/article` (FR) + `/en/blog/article` (EN).
-   * - `'always'` : toutes locales sous préfixe. Ex: `/fr/...` + `/en/...`.
-   * - `undefined` : 1 seule locale, pas de routing locale-aware.
-   */
   localePrefix?: 'as-needed' | 'always'
 
   // Technique
@@ -153,33 +126,68 @@ export type NicheConfig = {
   branch: string
 }
 
-// ─── Valeurs par défaut (placeholder) ───────────────────────────────────
-// Ces valeurs permettent au site de build avec un template vierge. Elles sont
-// remplacées par init-site lors du bootstrap d'un nouveau site forké.
+// ─── Configuration du site — Actu Foot Belgique ─────────────────────────
 
 export const niche: NicheConfig = {
-  siteName: 'emd-template',
-  domain: 'example.com',
-  tagline: 'Le comparateur indépendant de votre niche',
+  // Identité
+  siteName: 'Actu Foot Belgique',
+  domain: 'actu-foot.be',
+  tagline: 'Le foot belge et européen, sans langue de bois',
 
-  entity: 'produit',
-  entities: 'produits',
-  entityVerb: 'choisir',
-  dealWord: 'deals',
+  // Vocabulaire — magazine d'actu, pas comparateur produit
+  entity: 'article',
+  entities: 'articles',
+  entityVerb: 'lire',
+  dealWord: 'à la une',
 
-  heroPrefix: 'Choisir votre',
-  heroSuffix: 'en toute confiance',
-  rotatingWords: ['produit'],
-  subtitle: 'Comparateur indépendant, quiz personnalisé et simulateur — tout pour décider vite et bien.',
-  ctaPrimary: { text: 'Comparer →', url: '/comparer' },
-  ctaSecondary: { text: 'Quiz personnalisé', url: '/quiz' },
+  // Hero
+  heroPrefix: 'Le foot belge',
+  heroSuffix: 'décortiqué match après match',
+  rotatingWords: ['Pro League', 'Diables Rouges', 'mercato', 'Champions League', 'analyses'],
+  subtitle: "L'actu, les analyses tactiques et le décryptage du foot belge et des grands championnats européens — un regard tranchant mais factuel.",
+  ctaPrimary: { text: 'Dernières news →', url: '/articles' },
+  ctaSecondary: { text: 'Pro League', url: '/pro-league' },
 
-  categories: [],
+  // Catégories — 5 silos éditoriaux
+  categories: [
+    {
+      slug: 'pro-league',
+      label: 'Pro League',
+      accent: 'var(--accent-1)',
+      description: 'Championnat belge — résultats, classement, analyses match par match',
+    },
+    {
+      slug: 'diables-rouges',
+      label: 'Diables Rouges',
+      accent: 'var(--accent-2)',
+      description: 'Sélection nationale belge — qualifications, Euro, Mondial, Nations League',
+    },
+    {
+      slug: 'champions-league',
+      label: 'Champions League',
+      accent: 'var(--accent-3)',
+      description: 'Le parcours européen des clubs belges et le top des clubs européens',
+    },
+    {
+      slug: 'grands-championnats',
+      label: 'Grands championnats',
+      accent: 'var(--accent-4)',
+      description: 'Premier League, Ligue 1, Liga, Bundesliga — vu depuis la Belgique',
+    },
+    {
+      slug: 'mercato',
+      label: 'Mercato',
+      accent: 'var(--accent-5)',
+      description: 'Transferts, rumeurs vérifiées et analyses du marché belge et international',
+    },
+  ],
 
-  quiz: { enabled: true, question: '', criteria: [] },
-  comparator: { enabled: true, criteria: [] },
-  simulator: { enabled: true, title: '', description: '' },
+  // Outils — désactivés pour un magazine d'actu pur
+  quiz: { enabled: false, question: '', criteria: [] },
+  comparator: { enabled: false, criteria: [] },
+  simulator: { enabled: false, title: '', description: '' },
 
+  // Style & DA — défini à l'Étape 8 (AUTO-DESIGN)
   style: {
     mode: 'dark',
     hero: 'split',
@@ -202,11 +210,18 @@ export const niche: NicheConfig = {
   },
   fonts: { display: 'Unbounded', body: 'Space Grotesk' },
 
+  // Auteur — défini à l'Étape 7
   author: { name: '', slug: '', title: '', bio: '', tone: [], noGo: [], formulations: [] },
 
-  logo: 'emd·template',
-  homeSections: ['ticker', 'deals', 'articles', 'categories', 'tools', 'author'],
+  // Identité visuelle
+  logo: 'Actu Foot·BE',
+  homeSections: ['ticker', 'featured', 'articles', 'categories', 'newsletter', 'author'],
 
+  // Pas d'affiliation — modèle display + newsletter
+  affiliateTag: '',
+  defaultStore: '',
+
+  // Signature DA — composée à l'Étape 8 (AUTO-DESIGN)
   signature: {
     anchor: '',
     oneRule: '',
@@ -215,10 +230,7 @@ export const niche: NicheConfig = {
     components: [],
   },
 
-  affiliateTag: '',
-  defaultStore: 'Amazon',
-
-  // Bloc 0 d'init-site — VERROUILLÉ
+  // Bloc 0 — VERROUILLÉ
   market: 'BE',
   defaultLocale: 'fr',
   locales: ['fr', 'nl'],
