@@ -1,0 +1,102 @@
+# content/pages/mentions-legales.nl.yaml
+#
+# Wettelijke vermeldingen — versie NL (Nederlandstalig) van Actu Foot Belgique.
+# Spiegel van content/pages/mentions-legales.yaml, conform [[mots-cles]] et [[ton-of-voice]].
+#
+# ⚠️ De velden met "IN TE VULLEN VOOR PRODUCTIE" moeten ingevuld worden voordat
+# de site publiek wordt gemaakt. Dit is een wettelijke verplichting (BE/EU).
+
+slug: wettelijke-vermeldingen
+title: "Wettelijke vermeldingen"
+seo:
+  title: "Wettelijke vermeldingen — Actu Foot Belgique"
+  description: "Wettelijke informatie van Actu Foot Belgique: uitgever, host, contact en AVG/GDPR."
+  noindex: false
+
+editeur:
+  raison_sociale: "IN TE VULLEN VOOR PRODUCTIE — Volledige voor- en achternaam van de uitgever (natuurlijke persoon)"
+  forme_juridique: "Particulier (natuurlijke persoon — site uitgegeven op niet-commerciële basis / nevenactiviteit)"
+  siret: ""
+  rcs: ""
+  capital_social: ""
+  adresse: "IN TE VULLEN VOOR PRODUCTIE — Volledig postadres (straat, nummer, postcode, gemeente, land). Een postbus is toegestaan ter bescherming van de privacy."
+  representant_legal: "IN TE VULLEN VOOR PRODUCTIE — Identiek aan raison_sociale (uitgever = directeur van publicatie)"
+  tva_intracom: ""
+
+contact:
+  email: "IN TE VULLEN VOOR PRODUCTIE — Publiek contactadres (bijv: contact@actu-foot.be)"
+  telephone: ""
+
+hebergeur:
+  nom: "Vercel Inc."
+  adresse: "340 S Lemon Ave #4133, Walnut, CA 91789, USA"
+  url: "https://vercel.com"
+  telephone: ""
+
+donnees_personnelles:
+  responsable_traitement: "De uitgever (zie sectie editeur hierboven). Geen DPO aangesteld — site van beperkte omvang, beperkte gegevensverwerking."
+  dpo_email: "IN TE VULLEN VOOR PRODUCTIE — Identiek aan contact.email (de uitgever behandelt zelf de AVG-verzoeken)"
+  finalites: |
+    Actu Foot Belgique verzamelt een beperkt aantal persoonsgegevens:
+
+    - **Nieuwsbrief**: e-mailadres + voornaam (optioneel). Doel: de redactionele nieuwsbrief versturen.
+      Bewaring zolang het abonnement actief is, verwijdering op verzoek of na langdurige inactiviteit.
+      Opslag bij de nieuwsbriefdienst (later te bepalen — type Brevo, ConvertKit, Mailchimp).
+
+    - **Contactformulier**: e-mailadres + bericht. Doel: uw bericht beantwoorden.
+      Bewaring maximaal 12 maanden na laatste interactie.
+
+    - **Analytics**: geanonimiseerde technische gegevens (paginabezoeken, tijd op de site, verkeersbron).
+      Tool: later te bepalen (Plausible, Vercel Analytics, of Google Analytics 4).
+      Bewaring volgens de tool — doorgaans 25-50 maanden.
+      Geen reclamecookies, geen verkoop van gegevens.
+
+    Geen gegevens worden doorverkocht aan derden. Geen reclameprofielen worden opgesteld.
+
+  base_legale: "Uitdrukkelijke toestemming (nieuwsbrief, formulier), gerechtvaardigd belang (geanonimiseerde meting). Conform AVG (Verordening EU 2016/679) en de Belgische wet van 30 juli 2018 betreffende de bescherming van natuurlijke personen."
+  droits_utilisateur: |
+    Conform de AVG en de Belgische wet van 30 juli 2018 beschikt u over de volgende rechten
+    op uw persoonsgegevens:
+    - recht op inzage,
+    - recht op rectificatie,
+    - recht op verwijdering (recht om vergeten te worden),
+    - recht op overdraagbaarheid,
+    - recht van bezwaar tegen verwerking,
+    - recht op beperking van verwerking.
+
+    Om deze rechten uit te oefenen, neemt u contact op met de uitgever via het e-mailadres
+    in de sectie contact. U kunt ook een klacht indienen bij de Belgische Gegevensbeschermingsautoriteit
+    (https://www.gegevensbeschermingsautoriteit.be) indien u meent dat uw rechten niet worden gerespecteerd.
+
+propriete_intellectuelle:
+  texte: |
+    Alle redactionele inhoud (artikels, dossiers, FAQ, originele illustraties, datavisualisaties)
+    gepubliceerd op Actu Foot Belgique is beschermd door het Belgische auteursrecht (wet van 30 juni 1994).
+    Elke reproductie, zelfs gedeeltelijk, zonder voorafgaande schriftelijke toestemming van de uitgever
+    is verboden.
+
+    Korte citaten zijn toegestaan in het kader van het citaatrecht voor analyse, kritiek of onderwijs,
+    op voorwaarde dat de bron wordt vermeld (« Actu Foot Belgique » + link naar het originele artikel).
+
+    Afbeeldingen van spelers, teams en competities op de site vallen onder het recht op sportinformatie.
+    De logo's van vermelde clubs en competities blijven eigendom van hun respectievelijke eigenaars.
+
+cookies:
+  presence: true
+  description: |
+    Actu Foot Belgique gebruikt een beperkt aantal cookies:
+
+    - **Technische cookies** (verplicht, geen toestemming vereist): weergavevoorkeuren,
+      onthouden van de taalkeuze (FR / NL).
+
+    - **Geanonimiseerde meet-cookies** (toestemming vereist afhankelijk van de gekozen tool):
+      voor het meten van het siteverkeer en het verbeteren van de inhoud. Geen gegevens worden
+      gedeeld met adverteerders.
+
+    Geen reclamecookies, geen profielcookies, geen retargeting-cookies worden zonder uw
+    uitdrukkelijke toestemming geplaatst.
+
+    Het gedetailleerde cookiebeheer is toegankelijk op de speciale pagina.
+  url_gestion: "/nl/cookies"
+
+derniere_mise_a_jour: "2026-06-10"
