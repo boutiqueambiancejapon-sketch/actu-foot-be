@@ -1,0 +1,4 @@
+domain,repo_name,site_name,niche,market,locale,skin,archetype,categories,entity,entities,entity_verb,deal_word,affiliate_tag,tagline,status
+meilleur-panneau-solaire.fr,panneau-solaire-fr,MeilleurPanneauSolaire,énergie solaire,FR,fr,V3,comparateur,"panneau-solaire;micro-onduleur;batterie-solaire",panneau,panneaux,acheter,offres,amzn-fr-21,Le comparateur indépendant de panneaux solaires,pending
+meilleur-robot-tondeuse.be,robot-tondeuse-be,MeilleurRobotTondeuse,robot tondeuse,BE,fr,V2,comparateur,"robot-tondeuse;accessoire;marque",robot,robots,choisir,bons plans,amzn-be-21,Choisir son robot tondeuse sans se tromper,pending
+actu-foot.be,actu-foot-be,ActuFootBe,actualité football belge,BE,fr,V2,magazine,"actualite;joueurs-belges;international",article,articles,lire,à la une,,L'actualité du football belge — joueurs et scène internationale,pending

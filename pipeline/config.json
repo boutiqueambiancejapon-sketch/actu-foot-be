@@ -1,0 +1,5 @@
+{
+  "org": "boutiqueambiancejapon-sketch",
+  "template_repo": "template-V2",
+  "_note": "Le token GitHub est lu depuis les variables d'environnement ($GITHUB_TOKEN / $GH_TOKEN) — pas besoin de le stocker ici."
+}
