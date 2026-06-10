@@ -4,14 +4,14 @@
  *
  * Usage :
  * 1. <ImagePlaceholder slotId="home-hero-background" /> affiche l'image si elle existe,
- *    sinon un placeholder (détaillé en dev, épuré en prod). Filet de sécurité dev :
- *    en V2, un site en prod ne doit afficher AUCUN placeholder.
+ *    sinon un placeholder (détaillé en dev, épuré en prod).
  * 2. La page /admin/images liste tous les slots et leur statut.
  * 3. Les prompts sont écrits pour Gemini / Nano Banana (le moteur réel) : courts
  *    (<= ~20 mots), descriptifs, finissant par « no text, no logos, no watermark ».
  *
- * Note : ce registre couvre QUE les images structurelles (pages fixes).
- * Les articles ont leurs images (cover/mid) via le frontmatter + la scheduled task.
+ * Format des images structurelles : .jpeg (output natif Gemini, conservé tel quel
+ * pour ne pas perdre de qualité par conversion). Les articles peuvent rester en
+ * .webp via la chaîne de génération en-app si activée.
  */
 
 import { niche } from '@/niche.config'
@@ -43,37 +43,38 @@ const STATIC_SLOTS: ImageSlot[] = [
   // Home
   {
     id: 'home-hero-background',
-    path: '/images/home/hero-background.webp',
+    path: '/images/home/hero-background.jpeg',
     width: 1920,
     height: 1080,
-    alt: 'Arrière-plan du hero',
-    description: 'Grande image en fond du hero above-fold. Ambiance immersive, cohérente avec la niche et la DA.',
-    prompt: p(
-      `Cinematic editorial background, [niche] theme, moody atmospheric lighting, shallow depth of field, muted color grading, premium magazine aesthetic, ${NEG}`
-    ),
+    alt: 'Arrière-plan du hero — stade de football au crépuscule',
+    description: 'Grande image en fond du hero above-fold. Stade éditorial au golden hour, ambiance magazine premium.',
+    prompt:
+      `Cinematic editorial empty football stadium at golden hour, warm side lighting on empty stands, dramatic long shadows, muted warm color grading, premium magazine aesthetic, shallow depth of field, ${NEG}`,
     section: 'home',
   },
   {
     id: 'home-hero-visual',
-    path: '/images/home/hero-visual.webp',
+    path: '/images/home/hero-visual.jpeg',
     width: 1000,
     height: 1250,
-    alt: 'Illustration principale du hero',
-    description: 'Visuel principal à droite du hero (variant "split"). Produit phare, illustration éditoriale, ou scène symbolique.',
-    prompt: p(
-      `Editorial hero visual for a [niche] guide, soft natural lighting, premium composition, negative space on one side, ${NEG}`
-    ),
+    alt: 'Visuel principal du hero — silhouette éditoriale',
+    description: 'Visuel principal à droite du hero (variant "split") ou en illustration de fond du hero centered.',
+    prompt:
+      `Editorial close-up portrait of football player silhouette in motion, dramatic side lighting, deep shadows, warm tones, cinematic vertical composition, premium magazine style, ${NEG}`,
     section: 'home',
   },
 
-  // Tools
+  // Tools — slots conservés pour cohérence du registre. Quiz/Comparator/Simulator
+  // sont désactivés dans niche.config.ts pour ce site (magazine pur), donc les
+  // images correspondantes ne sont pas générées à l'init. Le placeholder se déclenchera
+  // si une page outil est rendue.
   {
     id: 'comparer-hero',
     path: '/images/tools/comparer-hero.webp',
     width: 1920,
     height: 600,
     alt: 'Header du comparateur',
-    description: 'Bandeau horizontal en haut de /comparer. Évoque la comparaison, le choix.',
+    description: 'Bandeau horizontal en haut de /comparer. Outil désactivé sur ce site (magazine).',
     prompt: p(`Wide minimalist banner evoking side-by-side comparison of [nicheEn], clean background, editorial tone, ${NEG}`),
     section: 'tools',
   },
@@ -83,7 +84,7 @@ const STATIC_SLOTS: ImageSlot[] = [
     width: 1920,
     height: 600,
     alt: 'Header du quiz',
-    description: 'Bandeau horizontal en haut de /quiz. Évoque le parcours personnalisé.',
+    description: 'Bandeau horizontal en haut de /quiz. Outil désactivé sur ce site (magazine).',
     prompt: p(`Wide banner evoking a guided personalized choice for [nicheEn], soft gradients, abstract path, ${NEG}`),
     section: 'tools',
   },
@@ -93,7 +94,7 @@ const STATIC_SLOTS: ImageSlot[] = [
     width: 1920,
     height: 600,
     alt: 'Header du simulateur',
-    description: 'Bandeau horizontal en haut de /simulateur. Évoque le calcul, le budget.',
+    description: 'Bandeau horizontal en haut de /simulateur. Outil désactivé sur ce site (magazine).',
     prompt: p(`Wide banner evoking calculation and budget for [niche], abstract data visualization, clean lines, ${NEG}`),
     section: 'tools',
   },
@@ -103,7 +104,7 @@ const STATIC_SLOTS: ImageSlot[] = [
     width: 1920,
     height: 600,
     alt: 'Header des deals',
-    description: 'Bandeau horizontal en haut de /deals. Évoque la bonne affaire, l\'opportunité.',
+    description: 'Bandeau horizontal en haut de /deals. Outil désactivé sur ce site (magazine sans affiliation).',
     prompt: p(`Wide banner evoking premium offers for [niche], warm glowing accent lighting, editorial quality, ${NEG}`),
     section: 'tools',
   },
@@ -130,14 +131,13 @@ function dynamicSlots(): ImageSlot[] {
   niche.categories.forEach((cat) => {
     slots.push({
       id: `home-category-${cat.slug}`,
-      path: `/images/categories/${cat.slug}.webp`,
+      path: `/images/categories/${cat.slug}.jpeg`,
       width: 1200,
-      height: 800,
+      height: 900,  // 4:3 natif Gemini
       alt: `Illustration ${cat.label}`,
       description: `Image d'illustration de la section "${cat.label}" sur la home et en page pilier.`,
-      prompt: p(
-        `Editorial photo representing ${cat.label} in the [niche] context, shallow depth of field, premium magazine style, balanced composition, ${NEG}`
-      ),
+      prompt:
+        `Editorial photo representing ${cat.label} in the ${niche.entity} context, shallow depth of field, premium magazine style, balanced composition, ${NEG}`,
       section: 'home',
     })
   })
@@ -146,14 +146,13 @@ function dynamicSlots(): ImageSlot[] {
   niche.categories.forEach((cat) => {
     slots.push({
       id: `blog-category-background-${cat.slug}`,
-      path: `/images/blog/category-${cat.slug}.webp`,
+      path: `/images/blog/category-${cat.slug}.jpeg`,
       width: 2400,
-      height: 1200,
+      height: 1350,  // 16:9 natif Gemini (au lieu de 2:1 non supporté)
       alt: `Arrière-plan des articles ${cat.label}`,
       description: `Fond cinématique derrière le titre de chaque article de la catégorie "${cat.label}". Atmosphérique, avec de l'espace pour un overlay sombre et du texte.`,
-      prompt: p(
-        `Cinematic dark editorial background representing ${cat.label} for a ${niche.entity} guide, moody atmospheric lighting, rich muted color grading, space for a dark overlay, ${NEG}`
-      ),
+      prompt:
+        `Cinematic dark editorial background representing ${cat.label} for a ${niche.entity} guide, moody atmospheric lighting, rich muted color grading, space for a dark overlay, ${NEG}`,
       section: 'blog',
     })
   })
@@ -162,12 +161,12 @@ function dynamicSlots(): ImageSlot[] {
   if (niche.author.slug) {
     slots.push({
       id: `author-${niche.author.slug}`,
-      path: `/images/authors/${niche.author.slug}.webp`,
-      width: 512,
-      height: 512,
-      alt: `Photo de ${niche.author.name}`,
-      description: 'Photo de l\'auteur principal, format carré. Page auteur, articles, section AuthorTeaser.',
-      prompt: `Professional editorial portrait of ${niche.author.name || 'the author'}, natural lighting, neutral background, ${NEG}`,
+      path: `/images/authors/${niche.author.slug}.jpeg`,
+      width: 1024,
+      height: 1024,
+      alt: `Portrait éditorial de ${niche.author.name}`,
+      description: 'Portrait éditorial de l\'auteur principal, format carré. Page auteur, articles, section AuthorTeaser.',
+      prompt: `Stylized editorial illustration of a male sports journalist silhouette in profile, taking notes in a stadium press box, warm amber lighting, abstract figurative style, premium magazine illustration aesthetic, ${NEG}`,
       section: 'author',
     })
   }
