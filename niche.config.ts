@@ -1,21 +1,17 @@
 /**
  * niche.config.ts — Configuration centrale du site.
- * C'est le SEUL fichier à remplir pour chaque nouveau site issu du template.
  */
 
 export type NicheConfig = {
-  // Identité
   siteName: string
   domain: string
   tagline: string
 
-  // Vocabulaire de la niche
   entity: string
   entities: string
   entityVerb: string
   dealWord: string
 
-  // Hero
   heroPrefix: string
   heroSuffix: string
   rotatingWords: string[]
@@ -23,7 +19,6 @@ export type NicheConfig = {
   ctaPrimary: { text: string; url: string }
   ctaSecondary: { text: string; url: string }
 
-  // Catégories
   categories: {
     slug: string
     label: string
@@ -31,7 +26,6 @@ export type NicheConfig = {
     description?: string
   }[]
 
-  // Outils
   quiz: {
     enabled: boolean
     question: string
@@ -47,7 +41,6 @@ export type NicheConfig = {
     description: string
   }
 
-  // Style & DA
   style: {
     mode: 'dark' | 'light'
     hero: 'split' | 'centered' | 'minimal'
@@ -73,7 +66,6 @@ export type NicheConfig = {
     body: string
   }
 
-  // Auteur
   author: {
     name: string
     slug: string
@@ -84,15 +76,12 @@ export type NicheConfig = {
     formulations: string[]
   }
 
-  // Identité visuelle
   logo: string
   homeSections: string[]
 
-  // Affiliation
   affiliateTag: string
   defaultStore: string
 
-  // Signature DA
   signature: {
     anchor: string
     oneRule: string
@@ -101,13 +90,11 @@ export type NicheConfig = {
     components: string[]
   }
 
-  // i18n & marché
   market: 'BE' | 'FR' | 'CA' | 'CH' | string
   defaultLocale: string
   locales: string[]
   localePrefix?: 'as-needed' | 'always'
 
-  // Technique
   vercelRegion: string
   repo: string
   branch: string
@@ -115,13 +102,44 @@ export type NicheConfig = {
 
 // ─── Configuration du site — Actu Foot Belgique ─────────────────────────
 //
-// DA (étape 8) : skin V2 Éditorial muté (rouge brique + verticale sport custom).
-// - archétype : magazine d'analyse + actu foot.
-// - skin source : V2 Éditorial (cf. docs/design-reference/volteo/DESIGN-NOTES.md §5).
-// - mutations : teinte marque #9E2B25 → #B23230 (~+12° vers rouge brique vif),
-//   fonts Newsreader+Hanken → Fraunces+Inter (mêmes registres serif+grotesk
-//   neutre, plus contemporains), rayons 3px (gardé), verticale custom sport
-//   (rouge Pro League, rouge Diables, bleu CL, vert pelouse, ambré mercato).
+// DA (étape 8) — mapping orthodoxe Voltéo :
+//
+// 1. SKIN source : V2 Éditorial.
+//    Source de vérité : docs/design-reference/volteo/assets/theme-v2.css.
+//    Tokens lus :
+//      --cream #FBF7F0 → bgPrimary
+//      --paper #FFFFFF → bgSurface
+//      --cream-2 #F1E8D9 → bgSurface2
+//      --ink #1B1813 → textPrimary
+//      --ink-2 #4A443A → textSecondary
+//      --ink-3 #8A8173 → textMuted
+//      --primary #9E2B25 → accent1 (marque + 1ère catégorie)
+//      --spark #C8922F → accent2 (2ème catégorie, convention DESIGN-NOTES §3a)
+//      --r-sm 2px / --r 3px / --r-lg 4px / --r-xl 6px → radius (rayons V2 nets, gardés)
+//      --line #E4D9C6 / --line-2 #EFE7D8 → borders (filets éditoriaux V2)
+//      shadows V2 spécifiques (offsets Y négatifs, presse) → reportées dans globals.css
+//
+// 2. VERTICALE : custom 5 hex "sport-foot" — exception assumée au catalogue Voltéo
+//    (énergie / assurance / auto / tech ne couvrent pas le foot).
+//    Mapping DESIGN-NOTES §4 : cat-1/2/3 verticale → accent3/4/5.
+//      cat-1 #1F3B6F (bleu UEFA profond)  → accent3 (Champions League)
+//      cat-2 #1A6E45 (vert pelouse saturé) → accent4 (Grands championnats)
+//      cat-3 #B98722 (ambré doré)          → accent5 (Mercato)
+//      cat-4/5 réservés (futures catégories : foot féminin, podcasts, data…)
+//
+// 3. MUTATIONS bornées (DESIGN-NOTES §6) :
+//      - teinte marque : #9E2B25 → #B23230 (rotation ~+12° → rouge brique plus vif,
+//        reste dans la famille bordeaux V2)
+//      - fonts : Newsreader+Hanken → Fraunces+Inter (même registre serif éditorial
+//        + grotesk neutre)
+//      - rayons : inchangés (V2 strict)
+//
+// 4. TEMPLATE : magazine (homeSections + style.hero centered).
+//
+// Conséquence "Diables Rouges en ambre" : accent2 = spark V2 ambré, donc la
+// catégorie Diables Rouges utilise un ambre profond et non un rouge. C'est la
+// doctrine Voltéo (le SKIN définit les 2 premiers slots, pas la sémantique du
+// label). Volontaire — différencie visuellement du rouge marque.
 
 export const niche: NicheConfig = {
   siteName: 'Actu Foot Belgique',
@@ -140,36 +158,36 @@ export const niche: NicheConfig = {
   ctaPrimary: { text: 'Dernières news →', url: '/articles' },
   ctaSecondary: { text: 'Pro League', url: '/pro-league' },
 
-  // Catégories — verticale sport custom (cf. signature.components ci-dessous)
+  // Catégories — mapping skin V2 (accent1/2) + verticale custom sport-foot (accent3/4/5)
   categories: [
     {
       slug: 'pro-league',
       label: 'Pro League',
-      accent: 'var(--accent-1)',  // #B23230 rouge brique éditorial (= marque)
+      accent: 'var(--accent-1)',  // #B23230 — primary V2 muté (marque)
       description: 'Championnat belge — résultats, classement, analyses match par match',
     },
     {
       slug: 'diables-rouges',
       label: 'Diables Rouges',
-      accent: 'var(--accent-2)',  // #E63946 rouge Belgique vif
+      accent: 'var(--accent-2)',  // #C8922F — spark V2 (convention skin, ambre profond)
       description: 'Sélection nationale belge — qualifications, Euro, Mondial, Nations League',
     },
     {
       slug: 'champions-league',
       label: 'Champions League',
-      accent: 'var(--accent-3)',  // #1F3B6F bleu profond UEFA CL
+      accent: 'var(--accent-3)',  // #1F3B6F — verticale custom cat-1 (bleu UEFA)
       description: 'Le parcours européen des clubs belges et le top des clubs européens',
     },
     {
       slug: 'grands-championnats',
       label: 'Grands championnats',
-      accent: 'var(--accent-4)',  // #2A8B5F vert pelouse
+      accent: 'var(--accent-4)',  // #1A6E45 — verticale custom cat-2 (vert pelouse)
       description: 'Premier League, Ligue 1, Liga, Bundesliga — vu depuis la Belgique',
     },
     {
       slug: 'mercato',
       label: 'Mercato',
-      accent: 'var(--accent-5)',  // #D89A2B ambré or (valeur/transfert)
+      accent: 'var(--accent-5)',  // #B98722 — verticale custom cat-3 (ambré doré)
       description: 'Transferts, rumeurs vérifiées et analyses du marché belge et international',
     },
   ],
@@ -179,7 +197,7 @@ export const niche: NicheConfig = {
   comparator: { enabled: false, criteria: [] },
   simulator: { enabled: false, title: '', description: '' },
 
-  // Style — V2 Éditorial muté (clair, hero centered magazine, angles nets)
+  // Style — V2 Éditorial, magazine, angles nets
   style: {
     mode: 'light',
     hero: 'centered',
@@ -188,25 +206,25 @@ export const niche: NicheConfig = {
     uiStyle: 'editorial-press',
   },
 
-  // Palette — V2 Éditorial muté (papier chaud + 5 accents sport)
+  // Palette — V2 muté + verticale custom sport-foot
   palette: {
-    accent1: '#B23230',  // rouge brique éditorial muté (marque + Pro League)
-    accent2: '#E63946',  // rouge Belgique vif (Diables Rouges)
-    accent3: '#1F3B6F',  // bleu profond UEFA (Champions League)
-    accent4: '#2A8B5F',  // vert pelouse (Grands championnats)
-    accent5: '#D89A2B',  // ambré or (Mercato)
-    bgPrimary: '#FBF7F0',  // crème V2
-    bgSurface: '#FFFFFF',
-    bgSurface2: '#F1E8D9',  // cream-2 V2
-    textPrimary: '#1B1813',
-    textSecondary: '#4A443A',
-    textMuted: '#8A8173',
+    accent1: '#B23230',  // primary V2 muté (~+12° rotation hue depuis #9E2B25)
+    accent2: '#C8922F',  // spark V2 pur (convention DESIGN-NOTES §3a)
+    accent3: '#1F3B6F',  // verticale custom cat-1 — bleu UEFA Champions League
+    accent4: '#1A6E45',  // verticale custom cat-2 — vert pelouse saturé
+    accent5: '#B98722',  // verticale custom cat-3 — ambré doré mercato
+    bgPrimary:   '#FBF7F0',  // --cream V2
+    bgSurface:   '#FFFFFF',  // --paper V2
+    bgSurface2:  '#F1E8D9',  // --cream-2 V2
+    textPrimary:   '#1B1813',  // --ink V2
+    textSecondary: '#4A443A',  // --ink-2 V2
+    textMuted:     '#8A8173',  // --ink-3 V2
   },
 
-  // Fonts — V2 Éditorial muté (Fraunces serif + Inter sans-serif neutre)
+  // Fonts — V2 muté (même registre serif vivant + grotesk neutre)
   fonts: {
-    display: 'Fraunces',
-    body: 'Inter',
+    display: 'Fraunces',     // mutation de Newsreader (V2 source)
+    body: 'Inter',           // mutation de Hanken Grotesk (V2 source)
   },
 
   // Auteur — Maxime
@@ -225,40 +243,40 @@ export const niche: NicheConfig = {
     ],
   },
 
-  // Identité visuelle
   logo: 'Actu Foot·BE',
   homeSections: ['ticker', 'featured', 'articles', 'categories', 'newsletter', 'author'],
 
-  // Pas d'affiliation — modèle display + newsletter
   affiliateTag: '',
   defaultStore: '',
 
-  // Signature DA — anti-footprint, presse foot éditoriale
+  // Signature DA — mapping Voltéo documenté
   signature: {
-    anchor: 'Presse foot éditoriale belge — papier chaud, angles nets, photo dominante, typo serif vivante (Fraunces).',
-    oneRule: 'Une photo dominante, un titre tranché, jamais de mots inutiles autour. La marge respire et la typo guide la lecture.',
+    anchor: 'V2 Éditorial muté (rouge brique presse) + verticale custom sport-foot (bleu UEFA / vert pelouse / ambré mercato).',
+    oneRule: 'Un titre tranché, une photo dominante, des filets éditoriaux à filet hairline #E4D9C6, jamais de mots inutiles. La marge respire et la typo serif guide la lecture.',
     inspiration: [
-      'The Athletic (US/UK) — long-form data-driven, sources nommées',
-      'So Foot (FR) — angle tranché, refus du consensus, ironie maîtrisée',
-      'Cinq (mag papier FR, ex-So Foot Hors-Série) — direction artistique magazine',
+      'The Athletic (US/UK) — long-form data-driven',
+      'So Foot (FR) — angle tranché, ironie maîtrisée',
+      'Cinq Mondial (mag papier FR) — direction artistique magazine éditorial',
       'Tifo Football — pédagogie tactique illustrée',
     ],
     forbidden: [
       'dégradés multi-couleurs néon ou pastel',
       'icônes flat colorées de type clipart générique',
       'carrousels auto-scroll horizontaux full-bleed',
-      'effets aurora-glow flottants (anti-pattern V4)',
+      'effets aurora-glow flottants (anti-pattern V4 sur skin V2)',
       "photos de stock anonymes de stades vides ou ballons sur fond neutre",
-      "fonds blancs purs sans grain (sauf zones de tableau)",
+      'shadows avec offsets symétriques (V2 utilise des offsets Y négatifs)',
+      'rayons > 6px (anti V2 — angles nets strict)',
     ],
     components: [
-      'EditorialHero — photo dominante + over-titre catégorie en majuscules + titre serif Fraunces grand',
+      'EditorialHero — photo dominante + over-titre catégorie majuscules (eyebrow .18em) + titre serif Fraunces grand letter-spacing -.015em',
       "ByLine — \"Par Maxime · 10 juin 2026 · 6 min de lecture\" sous titre, typo Inter petite",
       'TickerScores — bandeau discret en haut de home, scores live Pro League + grands championnats (à connecter API foot phase 2)',
       'PullQuote — citation serif Fraunces italique large, filet vertical accent-1',
-      'DataTable — tableaux stats avec typo éditoriale, alternance subtile cream/cream-2, en-tête accent-3 bleu profond',
-      'CategoryChip — étiquette catégorie en haut d\'article, couleur accent dédiée (Pro League rouge, Diables rouge vif, CL bleu, etc.)',
-      'BodyArticle — colonne 680px max, line-height 1.75, lettrine première lettre en Fraunces bold colorée accent-1',
+      'DataTable — tableaux stats avec en-tête accent-3 bleu UEFA, alternance cream/cream-2',
+      'CategoryChip — étiquette catégorie border-radius 3px (V2), couleur accent dédiée',
+      'BodyArticle — colonne 680px max, line-height 1.75, lettrine Fraunces bold accent-1',
+      'Filets line — séparateurs 1px solid #E4D9C6 (--line V2), aucune ombre portée sur les sections de contenu',
     ],
   },
 
