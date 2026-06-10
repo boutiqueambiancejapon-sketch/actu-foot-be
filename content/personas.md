@@ -1,182 +1,285 @@
-# Personas — [nom du site]
+# Personas — Actu Foot Belgique
 
 <!--
-Ce fichier définit les 2 à 4 personas du site. Pas des "buyer personas"
-marketing fantasmés, des archétypes opérationnels qui pilotent les choix
-éditoriaux : quelles questions on traite, quel niveau d'expertise on suppose,
-quel vocabulaire on emploie, quel format on privilégie selon l'étape du
-funnel.
+Personas auto-dérivés à l'init depuis :
+- [[ton-of-voice]] (audience "tout public foot adulte 25-55 ans")
+- [[mots-cles]] (5 clusters : Pro League, Diables Rouges, CL, grands championnats, mercato)
+- niche.config.ts (market: BE, locales: fr+nl)
 
-Lien avec les autres skills et fichiers :
-- `seo-geo-redaction` lit ce fichier pour la règle "FAQ in-flow H3 persona-focused"
-  (au lieu de PAA quand le sujet est niche ou non-couvert dans les SERP).
-  Le skill choisit le persona pertinent selon le sujet de l'article.
-- `content/mots-cles.md` croise avec ce fichier : un cluster = un ou deux
-  personas dominants, pas tous les personas pour tous les clusters.
-- `content/ton-of-voice.md` reste la voix unique du site (qui parle), ce
-  fichier définit à qui on parle dans le détail (qui écoute).
-
-Tant qu'au moins un `TODO` reste, `init-site` considère les personas comme
-non définis et redéclenchera le bloc.
-
-Format : 1 section par persona, structure fixe. Pas de YAML — les skills
-lisent comme du contexte texte.
+Ces archétypes pilotent la règle "FAQ in-flow H3 persona-focused" de
+[[seo-geo-redaction]]. Un article cible UN persona, pas plusieurs.
 -->
 
-## Persona 1 — TODO (nom court mémo, ex : "Solo Freelance Débutant")
+## Persona 1 — Supporter Pro League régulier
 
 ### Situation
-TODO (1-3 phrases factuelles : qui est-il, où, depuis quand, contexte de vie/pro qui compte pour son comportement de recherche).
-
-Exemple : *"Antoine, 28 ans, ancien salarié devenu auto-entrepreneur depuis 8 mois. Travaille seul depuis chez lui dans le développement web. Premier exercice fiscal en approche, jamais géré une compta de sa vie."*
+Habitant de la Wallonie ou de Bruxelles, supporter actif d'un club de Pro League (Standard, Anderlecht, Charleroi, Mouscron, Eupen, Union, le club local du moment). Suit les matchs en direct ou en différé toutes les semaines pendant la saison. Va parfois au stade (5-15 fois par an), consomme régulièrement du contenu foot belge en ligne.
 
 ### Ce qu'il cherche
-TODO (3-5 objectifs concrets en venant sur le site, formulés depuis SON point de vue, pas depuis le nôtre).
-
-- TODO (ex : "Comprendre s'il doit choisir BNC ou BIC sans devoir lire le BOFIP")
-- TODO
-- TODO
-
-### Ce qu'il évite ou craint
-TODO (3-5 frictions, peurs, ou anti-modèles que TU dois éviter pour gagner sa confiance).
-
-- TODO (ex : "Les articles sponsorisés Pennylane déguisés en comparatifs")
-- TODO (ex : "Les démos vidéo de 30 minutes")
-- TODO
-
-### Niveau d'expertise sur le sujet
-TODO (cocher) :
-- [ ] Débutant absolu (premières recherches sur le sujet)
-- [ ] Intermédiaire (a déjà lu 3-5 articles, connaît le vocabulaire de base)
-- [ ] Avancé (connaît les nuances, cherche un avis tranché ou un edge case)
-
-### Vocabulaire qu'il emploie
-TODO (5-10 mots ou expressions que CE persona utilise spontanément quand il cherche, à intégrer dans les H2/H3 pour le matching SEO + GEO).
-
-- TODO (ex : "facture micro" et pas "facturation auto-entrepreneur")
-- TODO
-- TODO
-
-### Vocabulaire qu'il ne comprend PAS
-TODO (3-5 jargon à éviter ou à expliquer immédiatement quand on s'adresse à ce persona).
-
-- TODO (ex : "exigibilité de la TVA" — il connaît mais sans connaître le terme exact)
-- TODO
-
-### Questions par étape de funnel
-
-#### Découverte (vient de réaliser qu'il a un problème)
-3 à 5 questions exactes qu'il taperait dans Google ou Perplexity à ce stade.
-
-- TODO (ex : "Est-ce que je dois faire des factures même sans TVA ?")
-- TODO
-- TODO
-
-#### Évaluation (compare des options)
-3 à 5 questions au stade évaluation.
-
-- TODO (ex : "Pennylane gratuit suffit ou pas pour un micro à 15k€/an ?")
-- TODO
-- TODO
-
-#### Décision (sur le point de choisir)
-3 à 5 questions au stade décision.
-
-- TODO (ex : "Si je prends Pennylane et que je change d'avis dans 6 mois, je récupère mes données ?")
-- TODO
-
-#### Post-décision / usage (après l'achat ou l'inscription)
-2 à 3 questions qu'il se posera APRÈS, et auxquelles on peut répondre pour cycler le trafic récurrent.
-
-- TODO (ex : "Comment générer ma première facture Pennylane sans me planter ?")
-- TODO
-
-### Sources d'info qu'il consulte
-TODO (3-5 endroits où ce persona traîne avant de lire ton article — utile pour ajuster le ton et savoir contre quel discours on s'aligne ou se différencie).
-
-- TODO (ex : r/AutoEntrepreneurFR, La Fabrique du Net, podcast "L'After Eco")
-- TODO
-
----
-
-## Persona 2 — TODO (nom court)
-
-[Même structure intégrale qu'au-dessus]
-
-### Situation
-TODO
-
-### Ce qu'il cherche
-- TODO
-- TODO
-- TODO
+- Comprendre **pourquoi son équipe a perdu** ou gagné — au-delà du score, dans le jeu.
+- Suivre **les rumeurs et confirmations de transferts** concernant son club.
+- Avoir un **avis tranché et étayé** sur les choix de l'entraîneur (compositions, remplaçants, système).
+- **Anticiper le calendrier** (match midweek européen, déplacement à Bruges, derbies).
+- Se positionner dans les discussions de comptoir / réseaux avec des arguments construits.
 
 ### Ce qu'il évite ou craint
-- TODO
-- TODO
+- Les **résumés-match plats** sans analyse — il a déjà vu le match.
+- Les **rumeurs creuses** non sourcées qui font perdre du temps.
+- Les **éditos pro-XYZ** (parti pris d'un journaliste favorable à un autre club).
+- Les **paywalls agressifs** quand il veut juste lire 1 article.
+- Les **listicles type "Top 10"** qui n'apportent pas d'analyse réelle.
 
-### Niveau d'expertise sur le sujet
+### Niveau d'expertise
 - [ ] Débutant
-- [ ] Intermédiaire
+- [x] **Intermédiaire** — connaît bien son club, les systèmes de jeu de base, sait nommer les titulaires des 5-6 gros clubs. Pas un analyste tactique pointu.
 - [ ] Avancé
 
 ### Vocabulaire qu'il emploie
-- TODO
+- « le derby » (Anderlecht-Standard, Bruges-Anderlecht, derby liégeois RFC Liège-Standard…)
+- « les Rouches » (Standard), « le Sporting » (Anderlecht), « le Club » (Brugge), « l'Union »
+- « les Mauves », « le matricule » (référence ancien matricule URBSFA)
+- « play-offs 1 » / « play-offs 2 »
+- « notre 9 » (référence à l'avant-centre), « la mentalité »
+- « Croky Cup », « la coupe »
+- noms de joueurs de l'effectif courant + 2-3 légendes du club
 
-### Vocabulaire qu'il ne comprend PAS
-- TODO
+### Vocabulaire qu'il ne comprend PAS naturellement
+- « xG » (expected goals), « PPDA » (passes per defensive action), « gegenpressing » — il faut expliquer en 1 phrase et illustrer.
+- « heatmap », « event data » — sait que ça existe sans en lire en détail.
+- Tactiques nommées en allemand/italien (« catenaccio » oui, « libero » oui, « regista » à expliquer).
 
 ### Questions par étape de funnel
 
 #### Découverte
-- TODO
+- « Pourquoi mon club a-t-il perdu hier ? »
+- « Qui c'est le nouveau coach du Standard ? »
+- « C'est quoi les rumeurs de transferts à Anderlecht cet été ? »
 
 #### Évaluation
-- TODO
+- « Est-ce que ce nouveau joueur va vraiment changer notre milieu ? »
+- « Vincent Kompany peut-il vraiment réussir à Bayern Munich ? »
+- « Pourquoi le Club de Bruges domine en Europe et pas Anderlecht ? »
 
 #### Décision
-- TODO
+- « Est-ce que je vais aller au stade ce week-end ou je regarde à la maison ? »
+- « Vaut-il la peine de prendre un abonnement DAZN cette saison ? »
 
 #### Post-décision / usage
-- TODO
+- « Quand est notre prochain gros match européen ? »
+- « Comment se passe la saison après le mercato d'hiver ? »
 
-### Sources d'info qu'il consulte
-- TODO
+### Sources d'info consultées
+- walfoot.be (concurrent direct dont il connaît la limite)
+- RTBF Sport (pour les vidéos résumés)
+- comptes Twitter/X de son club + journalistes BE
+- forum/Discord de son club
+- éventuellement DH.be Sport pour le côté régional
 
 ---
 
-## Persona 3 — TODO (optionnel)
+## Persona 2 — Suiveur des Diables Rouges
 
-[Idem. Ne créer un troisième persona QUE s'il a un comportement réellement différent des deux premiers, sinon c'est de la dilution.]
+### Situation
+Bruxellois ou Flamand (mais on parle FR ici, le miroir NL adresse les NL-phones). Foot moins prioritaire que le supporter Persona 1 — suit son équipe nationale en intensité (tournois majeurs, qualifications, gros matchs), regarde un peu de Pro League en passant. Souvenir vif de la « génération dorée » (Hazard, KDB, Lukaku). Peut être un peu désabusé après l'Euro 2024 et le Mondial 2022.
 
-## Persona 4 — TODO (optionnel, rare)
+### Ce qu'il cherche
+- Suivre l'**état de forme des Diables**, les **convocations**, **les blessures avant les gros matchs**.
+- Comprendre **où en est la sélection** tactiquement et générationnellement (transition post-génération dorée).
+- Lire des **portraits ou points sur les Belges expatriés** (Doku, De Bruyne, Lukaku, Tielemans, Carrasco, Trossard, Vermeeren).
+- Connaître les **enjeux des qualifications** Euro / Mondial / Nations League.
 
-[Idem. Quatre personas, c'est déjà une niche très large — vérifie que tu n'es pas en train de tout couvrir au lieu de t'adresser à quelqu'un.]
+### Ce qu'il évite ou craint
+- Le **techno-tactique pour les techno-tactiques** — il veut comprendre, pas se sentir bête.
+- Les **prises de position politiques sur les sélectionneurs** (X est nul, Y est génial) sans données.
+- Les **comparaisons faciles** « Tedesco c'est nul comparé à Martinez ».
+- Les **« énième analyse de la fin de la génération dorée »** — sujet épuisé sans angle neuf.
+
+### Niveau d'expertise
+- [x] **Intermédiaire-débutant** — connaît les Diables, la grande histoire, les joueurs phares. Pas calé en tactique fine. Plus émotionnel qu'analytique.
+- [ ] Intermédiaire avancé
+- [ ] Expert
+
+### Vocabulaire qu'il emploie
+- « les Diables », « la sélection », « les nôtres »
+- noms des joueurs phares actuels et passés
+- « le sélectionneur » (pas « le coach » pour la sélection)
+- « la qualif », « le tournoi », « le tirage »
+
+### Vocabulaire qu'il ne comprend PAS naturellement
+- « plan A vs plan B tactique » sans expliquer concrètement.
+- « repli défensif structuré », « presse coordonnée », « rotation des axes ».
+- Tout vocabulaire de schéma tactique sans dessin / heatmap à l'appui.
+
+### Questions par étape de funnel
+
+#### Découverte
+- « Qui est convoqué chez les Diables ce mois-ci ? »
+- « Pourquoi De Bruyne est-il sorti à la mi-temps ? »
+- « C'est quoi le calendrier des qualifs Euro 2028 ? »
+
+#### Évaluation
+- « Doku peut-il vraiment remplacer Hazard ? »
+- « Pourquoi Lukaku ne marque pas en sélection comme en club ? »
+- « Vermeeren va-t-il s'imposer chez les Diables ? »
+
+#### Décision
+- « Je vais regarder le match ou pas — vaut-il le coup ? »
+- « Je prends un abonnement pour les qualifs ou je regarde sur la RTBF ? »
+
+#### Post-décision / usage
+- « Bilan des Diables après ce rassemblement : qui monte, qui descend ? »
+- « Comment se compare cette défaite à celle de 2022 ? »
+
+### Sources d'info consultées
+- RTBF Sport (vidéos résumés)
+- walfoot.be pour les rumeurs/news rapides
+- L'Équipe pour les expatriés en France (Doku, Trossard…)
+- Comptes Twitter/X officiels des Diables Rouges et de l'URBSFA
+- DH.be pour les portraits
+
+---
+
+## Persona 3 — Curieux foot européen + angle BE
+
+### Situation
+Lecteur foot transverse, suit la Premier League, la Ligue 1, parfois la Liga ou la Serie A en plus du foot belge. Vit en Belgique (souvent à Bruxelles, parfois en Flandre — d'où l'importance du miroir NL). Lit So Foot, The Athletic en VO, écoute Tifo Football. Cherche des angles que les médias français n'ont pas — notamment l'angle BE sur les joueurs/clubs internationaux.
+
+### Ce qu'il cherche
+- Lire **les Belges expatriés en grands championnats** avec rendement chiffré et lecture tactique.
+- Comprendre **l'économie du foot belge** comparée aux grands championnats.
+- Suivre **les clubs belges en Coupes d'Europe** avec analyse tactique.
+- Trouver des **dossiers de fond** (1500+ mots, signés, sourcés) — pas des briefs.
+- Un **angle belge** sur les gros sujets internationaux (Mondial, Ballon d'Or, mercato d'été).
+
+### Ce qu'il évite ou craint
+- Les **briefs courts à la SoFoot** sans angle — il les voit déjà ailleurs.
+- Les articles « **clickbait avec photo dramatique** » et 200 mots de copier-coller.
+- L'**absence de signature** ou les signatures collectives anonymes.
+- Les **citations sans source nommée** (« selon une source proche du dossier »).
+
+### Niveau d'expertise
+- [ ] Débutant
+- [ ] Intermédiaire
+- [x] **Avancé** — connaît xG, presse haute, systèmes de jeu nommés, lit en VO, suit des journalistes pointus. Veut un avis tranché et étayé.
+
+### Vocabulaire qu'il emploie
+- xG, xA, PPDA, ELO, heatmap, possession utile
+- « système en 4-2-3-1 », « 3-4-2-1 », « back three »
+- « gegenpressing », « low block », « counter-pressing »
+- noms d'analystes étrangers (Michael Cox, JJ Bull, Sean Cole)
+- références à des moments historiques précis (« comme le 4-2-4 de Sacchi »)
+
+### Vocabulaire qu'il ne comprend PAS naturellement
+- Quasi rien à expliquer — il maîtrise le vocabulaire technique.
+- Mais : ATTENTION aux faux amis traduction (« linebreaking passes » FR-EN), bien adapter.
+
+### Questions par étape de funnel
+
+#### Découverte
+- « Qu'est-ce qui se cache derrière les chiffres de De Bruyne cette saison ? »
+- « Pourquoi le Club Brugge marche en CL et pas Anderlecht ? »
+- « Quelles équipes belges suivre cette saison en Europa League ? »
+
+#### Évaluation
+- « Vermeeren est-il vraiment au niveau de la Serie A ? Comparaison chiffrée. »
+- « Tedesco a-t-il les outils tactiques pour passer le 1/8 du Mondial 2026 ? »
+- « Pourquoi tant de Belges échouent en Premier League après 2 saisons ? »
+
+#### Décision
+- « Je m'abonne à un service streaming foot belge / européen — lequel ? »
+- « Je crée un fantasy team sur la Pro League — sur quelles données me baser ? »
+
+#### Post-décision / usage
+- « Comparatif tactique entre les générations De Bruyne et De Ketelaere — sur 3 saisons. »
+- « Bilan annuel des transferts Pro League → étranger : qui réussit vraiment ? »
+
+### Sources d'info consultées
+- The Athletic (UK, en VO)
+- Tifo Football (YouTube)
+- So Foot (papier et web)
+- Twitter/X journalistes pointus (BE et UK)
+- Podcasts spécialisés (Foot is Everything, Tactical Disco)
+- Comptes data (Opta, FBref)
+
+---
+
+## Persona 4 — Lecteur NL-phone (Flamand) — version miroir
+
+### Situation
+Vit en Flandre (Anvers, Gand, Bruges, Hasselt…), lit aussi en NL. Suit le foot belge (souvent un club flamand : Club Brugge, KAA Gent, Antwerp, KV Mechelen, OH Leuven, Cercle Brugge, Genk…). S'intéresse au foot européen avec un focus Eredivisie + Bundesliga. Habitué à voetbalkrant.com côté NL.
+
+### Ce qu'il cherche
+- Foot belge couvert **en néerlandais avec sérieux** (pas du Google Translate).
+- Suivi des **clubs flamands** sans biais wallon (équilibre éditorial Pro League).
+- Belges en Bundesliga, Eredivisie, Premier League (Doku, De Bruyne, Tielemans…).
+- Contenu **co-localisé Belgique** — événements, calendriers, jurisprudence URBSFA.
+
+### Ce qu'il évite ou craint
+- Du contenu **traduit machinalement** avec gallicismes (« Standard de Luik » mal traduit).
+- Un **biais éditorial pro-Anderlecht/Standard** systématique.
+- Un site **édité depuis Bruxelles uniquement** sans contact terrain Flandre.
+
+### Niveau d'expertise
+- [x] **Intermédiaire** (mix de débutant à avancé selon les sujets) — peut basculer entre supporter Pro League et curieux foot européen.
+
+### Vocabulaire qu'il emploie (en NL principalement)
+- « Pro League » / « Jupiler Pro League »
+- « Rode Duivels » (Diables Rouges)
+- « Club » (= Club Brugge), « Paars-wit » (Anderlecht), « Buffalo's » (KAA Gent), « Stamnummer »
+- « Bekerfinale » (finale de coupe)
+- « play-off 1 / play-off 2 »
+- « Bondscoach » (sélectionneur)
+
+### Vocabulaire à éviter en traduction
+- Traductions trop littérales du français (« supporteurs » → « supporters » et non « aanhangers »).
+- Tics franglais « le match », « le coach » → « de match » est OK mais « de coach » à éviter (préférer « de trainer »).
+
+### Questions par étape de funnel
+
+#### Découverte
+- « Wat zegt Maxime over Club Brugge dit weekend ? » (ou en VO : « Wat schreef Voetbalkrant over… »)
+- « Hoe staat Genk in de stand ? »
+
+#### Évaluation
+- « Is De Ketelaere weer aan het opveren bij Atalanta ? »
+- « Welke Belgische clubs hebben kans in Europa ? »
+
+#### Décision
+- « Ga ik vanavond Anderlecht-Antwerp kijken ? »
+
+#### Post-décision / usage
+- « Wanneer is de volgende speeldag in de play-offs ? »
+
+### Sources d'info consultées
+- voetbalkrant.com (concurrent direct NL — équivalent walfoot)
+- Sporza (média public flamand foot)
+- Het Laatste Nieuws (HLN) Sport
+- Comptes Twitter/X clubs flamands + journalistes (Stijn Vlaeminck, Niels Vleminckx…)
 
 ---
 
 ## Mapping persona → cluster
 
-Petit tableau de référence pour le skill `seo-geo-redaction` : pour chaque cluster défini dans `content/mots-cles.md`, quel(s) persona(s) sont dominants.
+Pour orienter le choix d'angle et le vocabulaire à chaque rédaction. Un article = un persona dominant.
 
 | Cluster | Persona dominant | Persona secondaire |
 |---|---|---|
-| TODO (nom cluster 1) | TODO (Persona 1) | TODO ou ∅ |
-| TODO (nom cluster 2) | TODO | TODO |
-| TODO (nom cluster 3) | TODO | TODO |
+| Pro League | Persona 1 (Supporter PL) | Persona 4 (NL-phone) |
+| Diables Rouges | Persona 2 (Suiveur Diables) | Persona 1 et Persona 3 |
+| Champions League / Coupes EU | Persona 3 (Curieux européen) | Persona 1 (Supporter de club européen) |
+| Grands championnats | Persona 3 (Curieux européen) | Persona 2 (pour les Belges expatriés) |
+| Mercato | Persona 1 (Supporter PL) | Persona 3 (analyses chiffrées) |
 
-Règle : un article tape UN persona à la fois, pas plusieurs. Si tu hésites, c'est probablement que le sujet est trop large et qu'il faut le splitter en deux articles.
+**Règle** : un article tape UN persona à la fois. Si on hésite entre 2, c'est que le sujet est trop large et qu'il faut le splitter en 2 articles distincts.
 
 ---
 
 ## Sources des personas
 
-D'où viennent les données ci-dessus, pour pouvoir les rafraîchir dans 12 mois sans repartir de zéro.
-
-- **Sources d'observation** : TODO (interviews clients / lecture de threads Reddit-Discord-Quora / analyse Search Console des requêtes vers le site / sondage email / questions reçues sur le formulaire de contact)
-- **Date de la dernière révision** : TODO
-- **Quand re-réviser** : à minima tous les 12 mois, ou si le mix d'audience du site change (signaux : changement net dans les sources Search Console, nouveaux types de questions reçues, etc.)
+- **Sources d'observation** : déduction depuis les clusters [[mots-cles]] (volumes, KD, intent), comportement observé via le profil des concurrents [[concurrents]] (qui leur lit quoi), connaissances générales du marché foot BE. Personas archétypaux, à raffiner après 3 mois de Search Console / Plausible.
+- **Date de la dernière révision** : 2026-06-10 (init, auto-dérivés).
+- **Quand re-réviser** : tous les 12 mois minimum, ou si la Search Console révèle un nouveau type de requêtes / un nouveau mix d'audience.
 
 ---
 
-*Dernière définition : [date]. À éditer sans skill quand un persona évolue, à régénérer entièrement via `init-site` si trois personas ou plus ont changé.*
+*Personas auto-dérivés le 2026-06-10. À éditer manuellement sans skill quand un persona évolue. Régénération via init-site uniquement si 3 personas changent.*
